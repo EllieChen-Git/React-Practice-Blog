@@ -1,44 +1,38 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import HomeView from "./components/HomeView";
 import CategorySelectionView from "./components/CategorySelectionView";
 import NewEntryView from "./components/NewEntryView";
 
 class App extends Component {
-  state = { location: "home" };
-
-  getView() {
-    const { location } = this.state;
-    switch (location) {
-      case "home":
-        return <HomeView />;
-      case "categorySelection":
-        return <CategorySelectionView />;
-      case "newEntry":
-        return <NewEntryView />;
-      default:
-        return null;
-    }
-  }
-
-  onButtonClick = event => {
-    this.setState({ location: event.target.value });
+  state = {
+    categories: ["work", "study", "life"]
   };
 
   render() {
+    const { categories } = this.state;
     return (
-      <>
-        <button onClick={this.onButtonClick} value="home">
-          Home
-        </button>
-        <button onClick={this.onButtonClick} value="categorySelection">
-          Category Selection
-        </button>
-        <button onClick={this.onButtonClick} value="newEntry">
-          New Entry
-        </button>
-
-        {this.getView()}
-      </>
+      <div>
+        <BrowserRouter>
+          <Route exact path="/" component={HomeView} />
+          <Route
+            exact
+            path="/category"
+            render={props => {
+              return (
+                <CategorySelectionView {...props} categories={categories} />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/entry/new/:id"
+            render={props => {
+              return <NewEntryView {...props} categories={categories} />;
+            }}
+          />
+        </BrowserRouter>
+      </div>
     );
   }
 }

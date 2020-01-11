@@ -1,6 +1,6 @@
 # React Practice - Blog
 
-- Try to replicate the journal project we did in class to refresh my React knowledge.
+- Try to replicate the journal project we did in class into a React Blog to refresh my React knowledge.
 
 ### Dependencies
 
