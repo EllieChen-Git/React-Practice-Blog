@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import EntryForm from "./EntryForm";
 
 class NewEntryView extends Component {
   static defaultProps = {
@@ -19,6 +20,7 @@ class NewEntryView extends Component {
         <Link to="/">
           <button>Back to Home</button>
         </Link>
+        <EntryForm />
       </>
     );
   }
