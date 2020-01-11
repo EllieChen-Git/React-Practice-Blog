@@ -6,7 +6,16 @@ import NewEntryView from "./components/NewEntryView";
 
 class App extends Component {
   state = {
-    categories: ["work", "study", "life"]
+    categories: ["work", "study", "life"],
+    entries: []
+  };
+
+  onEntryFormSubmit = value => {
+    let { entries } = this.state;
+    this.setState({ entries: [...entries, value] });
+    //   this.setState(state => {
+    //     return { entries: [...state.entries, value]};
+    // });
   };
 
   render() {
@@ -28,7 +37,13 @@ class App extends Component {
             exact
             path="/entry/new/:id"
             render={props => {
-              return <NewEntryView {...props} categories={categories} />;
+              return (
+                <NewEntryView
+                  {...props}
+                  categories={categories}
+                  onEntryFormSubmit={this.onEntryFormSubmit}
+                />
+              );
             }}
           />
         </BrowserRouter>

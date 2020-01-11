@@ -8,7 +8,7 @@ class NewEntryView extends Component {
   };
   render() {
     const { id } = this.props.match.params;
-    const { categories } = this.props;
+    const { categories, onEntryFormSubmit } = this.props;
 
     if (!categories[id]) {
       return <div>Invalid Category</div>;
@@ -20,7 +20,7 @@ class NewEntryView extends Component {
         <Link to="/">
           <button>Back to Home</button>
         </Link>
-        <EntryForm />
+        <EntryForm onEntryFormSubmit={onEntryFormSubmit} />
       </>
     );
   }
